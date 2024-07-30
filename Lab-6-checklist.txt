@@ -1,0 +1,157 @@
+********* Discord System ************
+
+Discord is a social platform which allows communication through voice calls, video calls, text messaging, and media.
+Communication can be private or take place in virtual communities called "servers". A server is a collection of persistent chat rooms and voice channels which can be accessed via invite links.
+Discord runs on Windows, macOS, Android, iOS, iPadOS, Linux, and in web browsers. As of 2024, the service has about 150 million monthly active users and 19 million weekly active servers.
+
+********* Discord Models ************
+
+1- User
+@NotEmpty
+@Size (min = 2 , max = 30)
+name 
+constraints (name must not be empty and size between 2 and 30 characters  )
+
+
+@NotEmpty
+@Size (min = 4 , max = 18)
+username
+constraints (username must not be empty and size between 4 and 18 characters  )
+
+
+@NotEmpty
+@Pattern(regexp = ^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@#$%^&+=]).{8,}$)
+password
+constraints (password must not be empty and contain at least one lower case letter and one upper case letter and one special character and one number and size more than 8 characters)
+
+
+photo
+constraints (no constraints)
+
+
+@NotEmpty
+@JsonFormat(pattern = "yyyy-MM-dd")
+@PastOrPresent
+joining date
+constraints (date must not be empty and format (2000-01-01) and must be present date or from the past not future date)
+
+
+phone number
+constraints (no constraints)
+
+
+@email
+Email
+constraints (email must be in email format)
+
+
+
+2- server
+
+@NotEmpty
+@Size (min = 2 , max = 30)
+name 
+constraints (name must not be empty and size between 2 and 30 characters  )
+
+photo
+constraints (no constraints)
+
+@Min(1)
+max(500000)
+members
+constraints (members can not be more than 500k and at least there must be one member in server )
+
+
+@NotEmpty
+link
+constraints (link must not be empty)
+
+@PositiveOrZero
+@Max(500)
+channels
+constraints (channel can not be more than 500 )
+
+
+
+privacy
+constraints (no constraints)
+
+
+
+
+
+3- channel
+
+@NotEmpty
+@Size (min = 2 , max = 30)
+name 
+constraints (name must not be empty and size between 2 and 30 characters  )
+
+@NotEmpty
+@Pattern(regexp = "^(text | voice)$")
+type
+constraints (type must be either text or voice  )
+
+privacy
+constraints (no constraints)
+
+
+@PositiveOrZero
+@Max(100)
+members
+constraints (members can not be more than 100 )
+
+server
+constraints (no constraints)
+
+
+
+4 - event
+
+@NotEmpty
+@Size (min = 2 , max = 30)
+name 
+constraints (name must not be empty and size between 2 and 30 characters  )
+
+@NotEmpty
+@JsonFormat(pattern = "yyyy-MM-dd")
+@FutureOrPresent
+start date
+constraints (date must not be empty and format (2000-01-01) and must be present date or from future not past date)
+
+@NotEmpty
+@JsonFormat(pattern = "yyyy-MM-dd")
+@FutureOrPresent
+end date
+constraints (date must not be empty and format (2000-01-01) and must be present date or from future not past date)
+frequency
+
+
+@Size(min=10,max=350)
+description
+constraints (description size must be between 2 and 30 characters  )
+
+
+channel
+constraints (no constraints)
+
+
+server
+constraints (no constraints)
+
+
+
+@PositiveOrZero
+@Max(100)
+members
+constraints (members can not be more than 100 )
+
+
+
+
+
+
+
+
+
+
